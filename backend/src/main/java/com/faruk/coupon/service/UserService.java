@@ -20,8 +20,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User postUser(User user) {
-        return userRepository.save(user);
+    public User postUser(User user) throws Exception {
+        return  userRepository.save(user);
     }
 
     public List<User> getAllUsers() {

@@ -3,6 +3,8 @@ package com.faruk.coupon.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +25,20 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
-    public User postUser(@RequestBody User user) {
-        return userService.postUser(user);
+    @PostMapping("/users")
+    public ResponseEntity<User> postUser(@RequestBody User user) {
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } else {
+            try {
+                User returnedUser = userService.postUser(user);
+                return ResponseEntity.status(HttpStatus.OK).body(returnedUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+            
+        }
     }
 
     @GetMapping("/users")

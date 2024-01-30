@@ -6,8 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "`user`")
 public class User {
     
     @Id
@@ -16,10 +18,11 @@ public class User {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "couponUser")
     private List<Coupon> coupons;
 
-    
+    public User() {
+    }
 
     public User(Long id, String name, List<Coupon> coupons) {
         this.id = id;
