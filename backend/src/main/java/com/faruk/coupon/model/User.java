@@ -54,6 +54,10 @@ public class User {
         this.coupons = coupons;
     }
 
+    public void addCoupon(Coupon coupon) {
+        coupons.add(coupon);
+    }
+
     
     
 

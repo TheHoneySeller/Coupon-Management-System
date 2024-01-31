@@ -5,10 +5,11 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+//to do: not a priority. implement and use later.
 @Component
 public class LanguageProvider {
-    public static enum STRING_CODE {
-        HELLO
+    public enum STRING_CODE {
+        HELLO, COUPONS_NULL_OR_TOO_MANY
     }
     
     private Map<STRING_CODE, String> currentLanguage;

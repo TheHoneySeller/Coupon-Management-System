@@ -13,4 +13,5 @@ public class ConstantsEnums {
     public static final double MIN_DISCOUNT_PERCENTAGE = 0;
 
     public static final int MAX_COUPON_UPLOAD_NUMBER = 10000;
+    public static final CouponType DEFAULT_COUPON_TYPE = CouponType.STANDARD;
 }
