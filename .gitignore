@@ -1,4 +1,5 @@
 backend/HELP.md
+backend/logs
 backend/target/
 !backend/.mvn/wrapper/maven-wrapper.jar
 !backend/**/src/main/**/target/
@@ -6,3 +7,5 @@ backend/target/
 
 ### VS Code ###
 .vscode/
+
+.DS_Store

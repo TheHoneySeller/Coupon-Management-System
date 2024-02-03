@@ -14,8 +14,15 @@ services:
       - SPRING_DATASOURCE_USERNAME=myuser
       - SPRING_DATASOURCE_PASSWORD=secret
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+      - LOG_FILE=/var/log/spring/log_files/app.log
     ports:
       - '8080:8080'
+    volumes:
+      - ./backend/logs/spring/log_files:/var/log/spring/log_files
+      - ./backend/src/main/resources/logback-spring.xml:/var/log/spring/logback-spring.xml 
+    command: ["sh", "-c", "mkdir -p /var/log/spring/log_files && touch /var/log/spring/log_files/app.log"]
+
+    
 
   postgres:
     image: 'postgres:latest'
