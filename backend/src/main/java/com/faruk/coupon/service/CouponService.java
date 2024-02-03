@@ -46,7 +46,7 @@ public class CouponService {
             couponType = ConstantsEnums.DEFAULT_COUPON_TYPE;
         }
 
-        Coupon coupon = couponRepository.findDistinctByCouponType(couponType);
+        Coupon coupon = couponRepository.findDistinctByType(couponType);
         if (coupon == null) {
             return Pair.of(HttpStatus.NOT_FOUND, "Cannot find a coupon with coupon type: " + couponType);
         }

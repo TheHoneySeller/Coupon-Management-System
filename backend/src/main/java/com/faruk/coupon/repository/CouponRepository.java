@@ -9,6 +9,6 @@ import com.faruk.coupon.model.Coupon;
 @Repository
 public interface CouponRepository extends JpaRepository<Coupon, Long>{
 
-    Coupon findDistinctByCouponType(CouponType couponType);
+    Coupon findDistinctByType(CouponType couponType);
     
 }

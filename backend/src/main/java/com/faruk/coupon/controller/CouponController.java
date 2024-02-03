@@ -13,18 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.faruk.coupon.constants_enums.ConstantsEnums;
 import com.faruk.coupon.constants_enums.ConstantsEnums.CouponType;
-import com.faruk.coupon.constants_enums.LanguageProvider;
 import com.faruk.coupon.model.Coupon;
 import com.faruk.coupon.service.CouponService;
 
 @Controller
 public class CouponController {
     private final CouponService couponService;
-    private final LanguageProvider language; // to do: implement and use :D
+    //private final LanguageProvider language; // to do: implement and use :D
 
-    public CouponController(CouponService couponService, LanguageProvider languageProvider) {
+    public CouponController(CouponService couponService) {
         this.couponService = couponService;
-        this.language = languageProvider;
     }
 
     @PostMapping("/bulkcouponupload")
