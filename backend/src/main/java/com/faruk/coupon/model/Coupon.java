@@ -13,6 +13,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 
 
 @Entity
@@ -22,18 +27,28 @@ public class Coupon {
     @GeneratedValue
     private Long id;
 
+    @NotNull
+    @Pattern(regexp = "^[A-Z0-9]{3,10}$") //alphanumeric string between 3 and 10 characters.
     @Column(unique=true)
     private String code;
     private CouponType type;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private DiscountType discountType;
     
+    @NotNull
+    @Min(0)
     private Double discountAmount;
+
+    @NotNull
+    @Min(0)
+    @Max(100)
     private Double discountPercentage;
 
     private OffsetDateTime expiresOn;
 
+    @Min(0)
     private Integer numberOfUsagesLeft;
 
     @ManyToOne
@@ -151,6 +166,12 @@ public class Coupon {
         result.append("}");
 
         return result.toString();
+    }
+
+    public void useOnceIfAvailable() {
+        if (numberOfUsagesLeft > 0) {
+            numberOfUsagesLeft--;
+        }
     }
 
     

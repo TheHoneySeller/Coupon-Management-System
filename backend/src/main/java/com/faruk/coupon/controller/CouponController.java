@@ -35,14 +35,15 @@ public class CouponController {
         if (coupons == null || coupons.size() > ConstantsEnums.MAX_COUPON_UPLOAD_NUMBER) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Coupons is null or there are too many coupons to upload. Max: " + ConstantsEnums.MAX_COUPON_UPLOAD_NUMBER);
         } else {
-            //System.out.println( "\n\n\n\n\n\n\n\n::>>>>>>" + Arrays.toString(coupons.toArray()));
-
+            
             try {
                 List<Coupon> returnedCoupons = couponService.bulkUpload(coupons);
                 return ResponseEntity.ok().body(returnedCoupons.toString()); 
             } catch (Exception e) {
                 e.printStackTrace();
-                return ResponseEntity.badRequest().body("Exception while trying to insert coupons: " + e.getMessage());
+                String errorString = "Exception while trying to insert coupons: " + e.getMessage();
+                logger.error(errorString, e);
+                return ResponseEntity.badRequest().body(errorString);
             }
 
             
