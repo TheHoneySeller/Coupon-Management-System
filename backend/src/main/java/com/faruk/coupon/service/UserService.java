@@ -30,7 +30,11 @@ public class UserService {
     }
 
     public User postUser(User user) throws Exception {
-        return  userRepository.save(user);
+        if (user != null) {
+            return  userRepository.save(user);
+        } else {
+            throw new IllegalArgumentException("user cannot be null!");
+        }
     }
 
     public List<User> getAllUsers() {
@@ -63,7 +67,7 @@ public class UserService {
             return ResponseEntity.badRequest().body(msg);
         }
 
-        // todo: implement time megadeal restrictions
+        //log and update redemption counts. call redemption logic.
         return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("implement me booooo");
     }
 

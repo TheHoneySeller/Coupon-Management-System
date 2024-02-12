@@ -13,7 +13,7 @@ import com.faruk.coupon.model.Coupon;
 public interface CouponRepository extends JpaRepository<Coupon, Long>{
 
     //return a usable coupon if it exists.
-    Coupon findDistinctByTypeAndNumberOfUsagesLeftGreaterThanAndExpiresOnGreaterThanAndUserIsNull(CouponType couponType, Integer min, OffsetDateTime now);
+    Coupon findDistinctByTypeAndNumberOfUsagesLeftGreaterThanAndExpiresOnGreaterThanAndCouponUserIsNull(CouponType couponType, Integer min, OffsetDateTime now);
     
     @Query("SELECT SUM(c.numberOfUsagesLeft) FROM Coupon c")
     Long getTotalUsagesLeft();
